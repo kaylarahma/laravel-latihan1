@@ -18,24 +18,20 @@ Route::get('/', function () {
 });
 
 Route::get('about', function () {
-    return '<h1>Hello</h1>' .
-        'Selamat datang di web app saya' .
-        '<br>Laravel, emang keren';
+    return view('about');
 });
 
 Route::get('profile', function () {
     $nama = "Kayla Rahmanisa";
-    return "Nama Saya Adalah <b>$nama</b>";
+    return view('profile', compact('nama'));
 });
 
 Route::get('post/{id}', function ($a) {
-    return "Halaman post ke - $a";
+    return view('post', compact('a'));
 });
 
 Route::get('bio/{nama}/{umur}/{place}', function ($a, $b, $c) {
-    return "Nama Saya $a" .
-        "<br>Umur Saya $b tahun" .
-        "<br>Alamat Saya di $c";
+    return view('bio', compact('a', 'b', 'c'));
 });
 
 Route::get('page/{id?}', function ($a = 1) {
@@ -62,4 +58,64 @@ Route::get('pesan/{ma?}/{mi?}/{ce?}', function ($a = null, $b = null, $c = null)
                 Minuman : $b <br>
                 Cemilan : $c <br>";
     }return $isi;
+});
+
+Route::get('biodata', function () {
+    $nama = "Kayla Rahmanisa";
+    $umur = 17;
+    $alamat = "Jl.Sukamenak Margahayu Bandung";
+    $skul = "Smk Assalaam Bandung";
+    $kls = "XII RPL 1";
+    $hobi = "Nyanyi";
+    return view('biodata', compact('nama', 'umur', 'alamat', 'skul', 'kls', 'hobi'));
+});
+
+Route::get('blog', function () {
+    $posts = [
+        ['id' => 1, 'title' => 'Lorem Lipsum 1', 'content' => 'content 1'],
+        ['id' => 2, 'title' => 'Lorem Lipsum 2', 'content' => 'content 2'],
+        ['id' => 3, 'title' => 'Lorem Lipsum 3', 'content' => 'content 3'],
+    ];
+    return view('blog', compact('posts'));
+});
+
+Route::get('kelas', function () {
+    $posts = [
+        ['id' => 1, 'name' => 'Abelina Nur Aulia', 'username' => 'abelinanur', 'email' => 'abelinanur@gmail.com', 'alamat' => 'Jl.Margahayu',
+            'mapel' => [
+                'mapel1' => 'Bahasa Indonesia',
+                'mapel2' => 'Matematika',
+                'mapel3' => 'Rekayasa Perangkat Lunak',
+            ],
+        ],
+        ['id' => 2, 'name' => 'Adzura Angelita', 'username' => 'adzuraa', 'email' => 'adzurangelita@gmail.com', 'alamat' => 'Jl.Situ Tarate',
+            'mapel' => [
+                'mapel1' => 'Bahasa Indonesia',
+                'mapel2' => 'Matematika',
+                'mapel3' => 'Rekayasa Perangkat Lunak',
+            ],
+        ],
+        ['id' => 3, 'name' => 'Kayla Rahmanisa', 'username' => 'kaylarahma', 'email' => 'kaylarahmanisa83@gmail.com', 'alamat' => 'Jl.Sukamenak',
+            'mapel' => [
+                'mapel1' => 'Bahasa Indonesia',
+                'mapel2' => 'Matematika',
+                'mapel3' => 'Rekayasa Perangkat Lunak',
+            ],
+        ],
+        ['id' => 4, 'name' => 'Risma Septiani Fadila', 'username' => 'rismafadila', 'email' => 'rismafadila@gmail.com', 'alamat' => 'Jl.Ciparay Tengah',
+            'mapel' => [
+                'mapel1' => 'Bahasa Indonesia',
+                'mapel2' => 'Matematika',
+                'mapel3' => 'Rekayasa Perangkat Lunak',
+            ],
+        ],
+        ['id' => 5, 'name' => 'Seni Oktoviani', 'username' => 'seniokto', 'email' => 'senioktoviani@gmail.com', 'alamat' => 'Jl.Sindang Play',
+            'mapel' => [
+                'mapel1' => 'Bahasa Indonesia',
+                'mapel2' => 'Matematika',
+                'mapel3' => 'Rekayasa Perangkat Lunak',
+            ],
+        ],
+    ];
+    return view('kelas', compact('posts'));
 });
