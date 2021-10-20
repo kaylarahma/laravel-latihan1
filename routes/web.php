@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('about', function () {
-    return view('about');
-});
+// Route::get('about', function () {
+//     return view('about');
+// });
 
 Route::get('profile', function () {
     $nama = "Kayla Rahmanisa";
@@ -175,3 +176,28 @@ Route::get('mhs', function () {
     $m = App\Models\Mahasiswa::all();
     return view('mhs', compact('m'));
 });
+
+Route::get('/about', [MyController::class, 'test']);
+
+Route::get('hero', [MyController::class, 'heroes']);
+
+Route::get('barang', [MyController::class, 'barang']);
+
+Route::get('pesanan', [MyController::class, 'pesanan']);
+
+Route::get('pembeli', [MyController::class, 'pembeli']);
+
+Route::get('pembelian', [MyController::class, 'pembelian']);
+
+Route::get('suplier', [MyController::class, 'suplier']);
+
+//pake parameter
+Route::get('barangs/{id}', [MyController::class, 'barangs']);
+
+Route::get('pesanans/{id}', [MyController::class, 'pesanans']);
+
+Route::get('pembelis/{id}', [MyController::class, 'pembelis']);
+
+Route::get('pembelians/{id}', [MyController::class, 'pembelians']);
+
+Route::get('supliers/{id}', [MyController::class, 'supliers']);
